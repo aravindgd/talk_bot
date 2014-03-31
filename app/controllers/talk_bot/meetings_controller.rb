@@ -20,59 +20,77 @@ module TalkBot
 			@token = TWILIO_INIT.generate
 		end
 
-		# GET /meetings
-		def index
-			@meetings = Meeting.all
-		end
-
-		# GET /meetings/1
-		def show
-		end
-
-		# GET /meetings/new
-		def new
-			@meeting = Meeting.new
-		end
-
-		# GET /meetings/1/edit
-		def edit
-		end
-
-		# POST /meetings
-		def create
-			@meeting = Meeting.new(meeting_params)
-
-			if @meeting.save
-				redirect_to @meeting, notice: 'Meeting was successfully created.'
-			else
-				render action: 'new'
+		def voice
+			params[:PhoneNumber]
+			response = Twilio::TwiML::Response.new do |r|
+				# Should be your Twilio Number or a verified Caller ID
+				r.Dial :callerId => caller_id do |d|
+					# # Test to see if the PhoneNumber is a number, or a Client ID. In
+					# # this case, we detect a Client ID by the presence of non-numbers
+					# # in the PhoneNumber parameter.
+					if /^[\d\+\-\(\) ]+$/.match(number)
+						d.Number(CGI::escapeHTML number)
+					else
+						d.Client number
+					end
+				end
 			end
+			response.text 
 		end
 
-		# PATCH/PUT /meetings/1
-		def update
-			if @meeting.update(meeting_params)
-				redirect_to @meeting, notice: 'Meeting was successfully updated.'
-			else
-				render action: 'edit'
-			end
-		end
+# GET /meetings
+def index
+	@meetings = Meeting.all
+end
 
-		# DELETE /meetings/1
-		def destroy
-			@meeting.destroy
-			redirect_to meetings_url, notice: 'Meeting was successfully destroyed.'
-		end
+# GET /meetings/1
+def show
+end
 
-		private
-		# Use callbacks to share common setup or constraints between actions.
-		def set_meeting
-			@meeting = Meeting.find(params[:id])
-		end
+# GET /meetings/new
+def new
+	@meeting = Meeting.new
+end
 
-		# Only allow a trusted parameter "white list" through.
-		def meeting_params
-			params[:meeting]
-		end
+# GET /meetings/1/edit
+def edit
+end
+
+# POST /meetings
+def create
+	@meeting = Meeting.new(meeting_params)
+
+	if @meeting.save
+		redirect_to @meeting, notice: 'Meeting was successfully created.'
+	else
+		render action: 'new'
+	end
+end
+
+# PATCH/PUT /meetings/1
+def update
+	if @meeting.update(meeting_params)
+		redirect_to @meeting, notice: 'Meeting was successfully updated.'
+	else
+		render action: 'edit'
+	end
+end
+
+# DELETE /meetings/1
+def destroy
+	@meeting.destroy
+	redirect_to meetings_url, notice: 'Meeting was successfully destroyed.'
+end
+
+private
+# Use callbacks to share common setup or constraints between actions.
+def set_meeting
+	@meeting = Meeting.find(params[:id])
+end
+
+# Only allow a trusted parameter "white list" through.
+def meeting_params
+	params[:meeting]
+end
 	end
 end

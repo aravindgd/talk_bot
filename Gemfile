@@ -15,3 +15,5 @@ gemspec
 gem 'twilio-ruby'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'sass-rails'
+gem 'bootstrap-rails-engine'
