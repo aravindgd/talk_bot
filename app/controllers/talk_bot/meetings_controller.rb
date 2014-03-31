@@ -8,11 +8,11 @@ module TalkBot
 			if params[:customer_name]
 				@customer_name = params[:customer_name]
 			end
-			default_client = "aravind"
+			# default_client = "aravind"
 			@client_name = params[:client]
-			if @client_name.nil?
-				@client_name = default_client
-			end
+			#if @client_name.nil?
+			#	@client_name = default_client
+			#end
 			Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 			Rails.logger.info @client_name
 			TWILIO_INIT.allow_client_outgoing DEMO_APP_SID_TWILIO
@@ -21,7 +21,8 @@ module TalkBot
 		end
 
 		def voice
-			params[:PhoneNumber]
+			caller_id = "+15162848057"
+			number = params[:PhoneNumber]
 			response = Twilio::TwiML::Response.new do |r|
 				# Should be your Twilio Number or a verified Caller ID
 				r.Dial :callerId => caller_id do |d|
@@ -35,7 +36,8 @@ module TalkBot
 					end
 				end
 			end
-			response.text 
+			response.text
+			Rails.logger.info response.text
 		end
 
 # GET /meetings
