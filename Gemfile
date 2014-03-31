@@ -12,3 +12,6 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+gem 'twilio-ruby'
+gem 'jquery-rails'
+gem 'haml-rails'
