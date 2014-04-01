@@ -15,3 +15,7 @@ gemspec
 gem 'twilio-ruby'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'capistrano', '~> 3.0.1'
+gem 'capistrano-bundler'
+gem 'capistrano-rails', '~> 1.1.0'
+gem 'capistrano-rvm', '~> 0.1.0'
