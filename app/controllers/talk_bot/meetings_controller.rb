@@ -5,7 +5,7 @@ module TalkBot
 
 
 		def call
-			default_client = "aravind"
+			default_client = params[:client]
 			@client_name = params[:client]
 			Rails.logger.info "Initial client name"
 			Rails.logger.info @client_name
