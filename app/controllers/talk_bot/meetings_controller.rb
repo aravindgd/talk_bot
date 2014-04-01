@@ -8,11 +8,11 @@ module TalkBot
 			if params[:customer_name]
 				@customer_name = params[:customer_name]
 			end
-			# default_client = "aravind"
+			default_client = "aravind"
 			@client_name = params[:client]
-			#if @client_name.nil?
-			#	@client_name = default_client
-			#end
+			if @client_name.nil?
+				@client_name = default_client
+			end
 			Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 			Rails.logger.info @client_name
 			TWILIO_INIT.allow_client_outgoing DEMO_APP_SID_TWILIO
@@ -36,7 +36,7 @@ module TalkBot
 					end
 				end
 			end
-			response.text
+			render :text=> response.text
 			Rails.logger.info response.text
 		end
 
