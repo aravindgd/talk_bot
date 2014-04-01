@@ -5,9 +5,6 @@ module TalkBot
 
 
 		def call
-			if params[:customer_name]
-				@customer_name = params[:customer_name]
-			end
 			default_client = "aravind"
 			@client_name = params[:client]
 			if @client_name.nil?
@@ -18,6 +15,10 @@ module TalkBot
 			TWILIO_INIT.allow_client_outgoing DEMO_APP_SID_TWILIO
 			TWILIO_INIT.allow_client_incoming @client_name
 			@token = TWILIO_INIT.generate
+			Rails.logger.info "Client name:!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			Rails.logger.info @client_name
+			Rails.logger.info "TOKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			Rails.logger.info @token
 		end
 
 		def voice
