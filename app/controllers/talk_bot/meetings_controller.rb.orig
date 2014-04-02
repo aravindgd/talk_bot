@@ -5,6 +5,7 @@ module TalkBot
 
 
 		def call
+<<<<<<< HEAD
     default_client = "jenny"
     # Find these values at twilio.com/user/account
     account_sid = 'AC1e7ff5d3ece16ab5ad2f63f7e201cb00'
@@ -21,26 +22,64 @@ module TalkBot
     end
 
 		def voice
-          default_client = "jenny"
-          caller_id = "+13174268213"
-          number = params[:PhoneNumber]
-          response = Twilio::TwiML::Response.new do |r|
-            # Should be your Twilio Number or a verified Caller ID
-            r.Dial :callerId => caller_id do |d|
-                # Test to see if the PhoneNumber is a number, or a Client ID. In
-                # this case, we detect a Client ID by the presence of non-numbers
-                # in the PhoneNumber parameter.
-                if /^[\d\+\-\(\) ]+$/.match(number)
-                    d.Number(CGI::escapeHTML number)
-                else
-                    d.Client default_client
-                end
+      default_client = "jenny"
+      caller_id = "+13174268213"
+      number = params[:PhoneNumber]
+      response = Twilio::TwiML::Response.new do |r|
+        # Should be your Twilio Number or a verified Caller ID
+        r.Dial :callerId => caller_id do |d|
+            # Test to see if the PhoneNumber is a number, or a Client ID. In
+            # this case, we detect a Client ID by the presence of non-numbers
+            # in the PhoneNumber parameter.
+            if /^[\d\+\-\(\) ]+$/.match(number)
+                d.Number(CGI::escapeHTML number)
+            else
+                d.Client default_client
             end
         end
-        render :text => response.text
-        
-       
-       # puts "#############{response.text}#################"    
+    end
+
+
+    response.text
+   # puts "#############{response.text}#################"    
+=======
+			default_client = params[:client]
+			@client_name = params[:client]
+			Rails.logger.info "Initial client name"
+			Rails.logger.info @client_name
+			if @client_name.nil?
+				@client_name = default_client
+			end
+			Rails.logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+			Rails.logger.info @client_name
+			TWILIO_INIT.allow_client_outgoing DEMO_APP_SID_TWILIO
+			TWILIO_INIT.allow_client_incoming @client_name
+			@token = TWILIO_INIT.generate
+			Rails.logger.info "Client name:!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			Rails.logger.info @client_name
+			Rails.logger.info "TOKEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			Rails.logger.info @token
+		end
+
+		def voice
+			caller_id = "+15162848057"
+			number = params[:PhoneNumber]
+			response = Twilio::TwiML::Response.new do |r|
+				# Should be your Twilio Number or a verified Caller ID
+				r.Dial :callerId => caller_id do |d|
+					# # Test to see if the PhoneNumber is a number, or a Client ID. In
+					# # this case, we detect a Client ID by the presence of non-numbers
+					# # in the PhoneNumber parameter.
+					if /^[\d\+\-\(\) ]+$/.match(number)
+						d.Number(CGI::escapeHTML number)
+					else
+						d.Client number
+					end
+				end
+			end
+			render :text=> response.text
+			Rails.logger.info response.text
+>>>>>>> e7a1a9136ff770d1b214e06e2fd82aaba662914d
 		end
     
     def make_call
