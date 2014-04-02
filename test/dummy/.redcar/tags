@@ -1,0 +1,5 @@
+1396429713
+Application	/devel/talk_bot/test/dummy/config/application.rb	  class Application 
+ApplicationController	/devel/talk_bot/test/dummy/app/controllers/application_controller.rb	class ApplicationController 
+ApplicationHelper	/devel/talk_bot/test/dummy/app/helpers/application_helper.rb	module ApplicationHelper
+Dummy	/devel/talk_bot/test/dummy/config/application.rb	module Dummy

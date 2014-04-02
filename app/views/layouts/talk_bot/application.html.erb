@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TalkBot</title>
-  <%= stylesheet_link_tag    "talk_bot/application", media: "all" %>
-  <%= javascript_include_tag "talk_bot/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>TalkBot</title>
+		<%= stylesheet_link_tag    "talk_bot/application", media: "all" %>
+		<%= javascript_include_tag "talk_bot/application" %>
+		<%= javascript_include_tag "//static.twilio.com/libs/twiliojs/1.1/twilio.min.js", "data-turbolinks-track" => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
 
-<%= yield %>
+		<%= yield %>
 
-</body>
+	</body>
 </html>
