@@ -1,5 +1,7 @@
 .container
-  %div#log.alert.alert-info Loading pigeons...
+  %div#button_log
+    %button.close{ :data => { :dismiss => "alert" } } x
+    %div#log.alert.alert-info Loading pigeons...
   %center
     .row
       %div.col-md-4 
@@ -13,7 +15,7 @@
                 Name
                 %li
                   Media  
-          %h2 Welcome to our site!
+          %h4 Welcome to our chat!
 
 
 
@@ -37,6 +39,6 @@
     .row
       %div.col-md-4
         %div.nav_bar_side
-          %h4 Webcams
+          %h4 Users
         %div.content  
-          %h2 Welcome to our site!
+          %h4 Welcome to our chat!

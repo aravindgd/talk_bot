@@ -81,7 +81,8 @@ height:38px;
     list-style-type:none;
   }
  .content {
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
+  height: 100%; 
  }
  .content li{
   display: inline;
