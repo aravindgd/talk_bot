@@ -23,8 +23,9 @@ $(document).ready(function(){
 	});
 	Twilio.Device.incoming(function (conn) {
 		$("#log").text("Incoming connection from " + conn.parameters.From);
-		// accept the incoming connection and start two-way audio
-		conn.accept();
+    $( ".nav_bar_side" ).css( "background-image", "linear-gradient(to bottom,#47a447 0,#47a447 100%)" );
+    // accept the incoming connection and start two-way audio
+    conn.accept();
 	});
 	/* Connect to Twilio when we call this function. */
   }
@@ -48,5 +49,6 @@ function twilio_client_call() {
 function twilio_client_hangup() {
 	Twilio.Device.disconnectAll();
 	$("#countdown").timeTo("stop");
+  $( ".nav_bar_side" ).css( "background-image", "linear-gradient(to bottom,#428bca 0,#357ebd 100%)" );
 }
 
