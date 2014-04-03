@@ -5,20 +5,24 @@ module TalkBot
 
 
 		def call
+     # Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{params[:ph_no]}"
+      
     default_client = "jenny"
+     @client_name = params[:customer_name]
+    if @client_name.nil?
+        @client_name = default_client
+    end
+    @client_phone = params[:ph_no]
     # Find these values at twilio.com/user/account
     account_sid = 'AC1e7ff5d3ece16ab5ad2f63f7e201cb00'
     auth_token = 'cb902e68e940a3457383b6c813ab68f1'
     capability = Twilio::Util::Capability.new account_sid, auth_token
     # Create an application sid at twilio.com/user/account/apps and use it here
     capability.allow_client_outgoing "AP8270d0631a20c1edddf407e99299eca6"
-    capability.allow_client_incoming default_client
+    capability.allow_client_incoming @client_name
     @token = capability.generate
     end
     
-    def page_for_call
-      
-    end
 
 		def voice
           default_client = "jenny"
@@ -38,23 +42,9 @@ module TalkBot
             end
         end
         render :text => response.text
-        
-       
-       # puts "#############{response.text}#################"    
-		end
+  		end
     
-    def make_call
-      phone_number = "+13174268213"
-      receiver = "+919003086996"
-      client = Twilio::REST::Client.new("AC1e7ff5d3ece16ab5ad2f63f7e201cb00", "cb902e68e940a3457383b6c813ab68f1")
-      client.account.calls.create(
-	    :from => phone_number,
-	    :to => receiver,
-	    :url => 'http://127.0.0.1:3000/call.xml')
-      redirect_to page_for_call_path
-    end
-
-      
+    
 
 # GET /meetings
 def index

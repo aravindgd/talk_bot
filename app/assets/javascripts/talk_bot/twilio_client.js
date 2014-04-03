@@ -34,7 +34,8 @@ $(document).ready(function(){
 
 function twilio_client_call() {
 	// get the phone number or client to connect the call to
-	params = {"PhoneNumber": $("#number").val()};
+	
+  params = {"PhoneNumber": $("#number").text()};
 	Twilio.Device.connect(params);
 	var count_down_time = $('#count_down_time').val();
 	console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%555")
