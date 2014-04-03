@@ -11,6 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140401130126) do
+
+  create_table "chat_rooms", force: true do |t|
+    t.text     "order"
+    t.string   "performer_name"
+    t.string   "customer_name"
+    t.integer  "duration"
+    t.text     "call_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

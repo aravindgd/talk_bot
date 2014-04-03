@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Order:
+  = @chat_room.order
+%p
+  %b Performer name:
+  = @chat_room.performer_name
+%p
+  %b Customer name:
+  = @chat_room.customer_name
+%p
+  %b Duration:
+  = @chat_room.duration
+%p
+  %b Type:
+  = @chat_room.call_type
+
+= link_to 'Edit', edit_chat_room_path(@chat_room)
+\|
+= link_to 'Back', chat_rooms_path
