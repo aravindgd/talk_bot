@@ -24,7 +24,10 @@
       %td= link_to 'Show', chat_room
       %td= link_to 'Edit', edit_chat_room_path(chat_room)
       %td= link_to 'Destroy', chat_room, :method => :delete, :data => { :confirm => 'Are you sure?' }
-      %td= link_to 'call', talk_bot.call_path(:client_name => abhiram), :method => :post
+      -uri =  URI.parse "/talk_bot/call?"
+      -uri.query = [uri.query, chat_room.customer_name].compact.join('=') 
+      -uri.query = [uri.query, "ph_no=919003086996", "performer_name=#{chat_room.performer_name}", "customer_name=#{chat_room.customer_name}", "duration=#{chat_room.duration}", "call_type=#{chat_room.call_type}"].compact.join('&') 
+      %td= link_to 'call', uri.to_s, :method => :post
 
 %br
 
