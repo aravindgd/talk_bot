@@ -23,9 +23,22 @@ $(document).ready(function(){
 	});
 	Twilio.Device.incoming(function (conn) {
 		$("#log").text("Incoming connection from " + conn.parameters.From);
+    
+    setInterval(function(){blink()}, 1000);            
+              
+    function blink() {
+        $(".nav_bar_side").fadeTo(100, 0.1).fadeTo(200, 1.0);
     $( ".nav_bar_side" ).css( "background-image", "linear-gradient(to bottom,#47a447 0,#47a447 100%)" );
+
+    }
     // accept the incoming connection and start two-way audio
-    conn.accept();
+    conn.accept(function(){
+      function blink() {
+    $( ".nav_bar_side" ).css( "background-image", "linear-gradient(to bottom,#428bca 0,#357ebd 100%)" );
+
+    }
+    	
+    });
 	});
 	/* Connect to Twilio when we call this function. */
   }
