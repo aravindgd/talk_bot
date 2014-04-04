@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401130126) do
+ActiveRecord::Schema.define(version: 20140404092600) do
 
   create_table "chat_rooms", force: true do |t|
     t.text     "order"
     t.string   "performer_name"
     t.string   "customer_name"
     t.integer  "duration"
-    t.text     "call_type"
+    t.text     "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "mobile_number"
   end
 
 end
