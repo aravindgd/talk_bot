@@ -53,6 +53,6 @@ class ChatRoomsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def chat_room_params
-      params.require(:chat_room).permit(:order, :performer_name, :customer_name, :duration, :call_type)
+      params.require(:chat_room).permit(:order, :performer_name, :customer_name, :duration, :call_type, :mobile_number)
     end
 end
