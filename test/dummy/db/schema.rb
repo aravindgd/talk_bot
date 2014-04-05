@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401130126) do
+ActiveRecord::Schema.define(version: 20140404174429) do
 
   create_table "chat_rooms", force: true do |t|
     t.text     "order"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20140401130126) do
     t.string   "customer_name"
     t.integer  "duration"
     t.text     "call_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talk_bot_sessions", force: true do |t|
+    t.integer  "caller"
+    t.integer  "caller_id"
+    t.integer  "reciever"
+    t.integer  "reciever_id"
+    t.integer  "order_id"
+    t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

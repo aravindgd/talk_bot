@@ -1,0 +1,38 @@
+
+.col-md-8.col-md-offset-2
+  %h1 Listing sessions
+
+  %table
+    %tr
+      %th Caller
+      %th Caller
+      %th Reciever
+      %th Reciever
+      %th Order
+      %th Duration
+      %th
+      %th
+      %th
+      %th
+
+    - @sessions.each do |session|
+      %tr
+        %td= session.caller_number
+        %td= session.caller_id
+        %td= session.reciever_number
+        %td= session.reciever_id
+        %td= session.order_id
+        %td= session.duration
+        %td= link_to 'Show', session
+        %td= link_to 'Edit', edit_session_path(session)
+        %td= link_to 'Destroy', session, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        -uri =  URI.parse "/talk_bot/call?"
+        -#-uri.query = [uri.query, chat_room.customer_name].compact.join('=') 
+        -uri.query = [uri.query, "ph_no=919003086996", "duration=#{session.duration}"].compact.join 
+
+        -#-uri.query = [uri.query, "ph_no=919003086996", "performer_name=#{chat_room.performer_name}", "customer_name=#{chat_room.customer_name}", "duration=#{chat_room.duration}", "call_type=#{chat_room.call_type}"].compact.join('&') 
+        %td= link_to 'call', uri.to_s, :method => :post
+
+  %br
+
+  = link_to 'New Session', new_session_path

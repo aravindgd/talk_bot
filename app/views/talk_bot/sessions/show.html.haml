@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Caller:
+  = @session.caller
+%p
+  %b Caller:
+  = @session.caller_id
+%p
+  %b Reciever:
+  = @session.reciever
+%p
+  %b Reciever:
+  = @session.reciever_id
+%p
+  %b Order:
+  = @session.order_id
+%p
+  %b Duration:
+  = @session.duration
+
+= link_to 'Edit', edit_session_path(@session)
+\|
+= link_to 'Back', sessions_path
