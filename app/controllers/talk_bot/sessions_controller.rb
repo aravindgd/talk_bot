@@ -6,7 +6,13 @@ module TalkBot
 
     # GET /sessions
     def index
-      @sessions = Session.all
+      if params.include?(:caller_id)
+        @sessions = Session.all.where(caller_id: params[:caller_id])
+      elsif params.include?(:reciever_id)
+        @sessions = Session.all.where(reciever_id: params[:reciever_id])
+      else
+        @sessions = Session.all
+      end
     end
 
     # GET /sessions/1
