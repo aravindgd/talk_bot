@@ -16,19 +16,16 @@ rake db:migrate
 
 As said engine has its own sessions table to store `caller_number`,`reciever_number` and duration
 We expect you to have one or two centralized table with `name`, `number` of the caller or reciever in table of your choice
-All you have to do is extend the session table by creating it in your own app
+To make it work with our engine just tell your class name for caller and reciever in initializer.
 
 ```
-mkdir app/models/talk_bot
-cd app/models/talk_bot
+# create talkbot.rb in config/initializers/ dir
+# and tell your class name for caller and reciever
+# default is caller and reciever
 
-# then create a file called session.rb
-# and paste the following 
 
-class TalkBot:: Session < ActiveRecord::Base
-  belongs_to :caller, class_name: "Performer"
-  belongs_to :reciever, class_name: "Client"
-end
+TalkBot.caller_class = "Performer"
+TalkBot.reciever_class = "Client"
 ```
 Instead of `Performer` and `Client` use your tables' model name
 
