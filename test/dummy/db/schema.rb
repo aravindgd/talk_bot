@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140404174429) do
     t.string   "customer_name"
     t.integer  "duration"
     t.text     "call_type"
+    t.integer  "mobile_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
