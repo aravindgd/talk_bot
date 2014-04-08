@@ -6,7 +6,7 @@ class CreateChatRooms < ActiveRecord::Migration
       t.string :customer_name
       t.integer :duration
       t.text :call_type
-
+      t.integer :mobile_number
       t.timestamps
     end
   end

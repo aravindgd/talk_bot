@@ -1,0 +1,44 @@
+.container
+  %div#log.alert.alert-info Loading pigeons...
+  %center
+    .row
+      %div.col-md-4 
+        %div.nav_bar_side
+          %h4 Users
+        %div.content
+          %ul
+            %li
+              Status
+              %li 
+                Name
+                %li
+                  Media  
+          %h2 Welcome!
+
+
+
+      .col-md-8
+        %div.nav_bar_side
+          %h4 Chat
+        %div.content
+      
+          %div#number= @client_phone
+          %br
+          %input.input-lg#count_down_time{name: "count_down_time", placeholder: "Enter the number of seconds the call should last", type: "hidden"}
+          %br
+          %button.call.btn-lg.btn-success{onclick: "twilio_client_call();"}
+            Call
+          %button.call.btn-lg.btn-danger{onclick: "twilio_client_hangup();"}
+            Hangup
+          %br
+          %br
+          #twilio_client_token{"data-token-id" => "#{@token}"} 
+            #twilio_client_name{"data-client-name" => "#{@client_name}"} 
+              #countdown
+    .row
+      %div.col-md-4
+        %div.nav_bar_side
+          %h4 Users
+        %div.content  
+          %h2 Welcome!
+

@@ -7,6 +7,7 @@
     %th Customer name
     %th Duration
     %th Type
+    %th Mobile Number
     %th
     %th
     %th
@@ -19,6 +20,7 @@
       %td= chat_room.customer_name
       %td= chat_room.duration
       %td= chat_room.call_type
+      %td= chat_room.mobile_number
       %td= link_to 'Show', chat_room
       %td= link_to 'Edit', edit_chat_room_path(chat_room)
       %td= link_to 'Destroy', chat_room, :method => :delete, :data => { :confirm => 'Are you sure?' }

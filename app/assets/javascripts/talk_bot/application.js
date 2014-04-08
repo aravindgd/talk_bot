@@ -11,6 +11,5 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap/bootstrap
 //= require custom.js
 //= require_tree .

@@ -1,0 +1,28 @@
+= form_for @session do |f|
+  - if @session.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@session.errors.count, "error")} prohibited this session from being saved:"
+      %ul
+        - @session.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :caller
+    = f.number_field :caller
+  .field
+    = f.label :caller_id
+    = f.number_field :caller_id
+  .field
+    = f.label :reciever
+    = f.number_field :reciever
+  .field
+    = f.label :reciever_id
+    = f.number_field :reciever_id
+  .field
+    = f.label :order_id
+    = f.number_field :order_id
+  .field
+    = f.label :duration
+    = f.number_field :duration
+  .actions
+    = f.submit 'Save'

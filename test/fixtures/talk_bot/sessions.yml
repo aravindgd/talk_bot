@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caller: 1
+  caller_id: 1
+  reciever: 1
+  reciever_id: 1
+  order_id: 1
+  duration: 1
+
+two:
+  caller: 1
+  caller_id: 1
+  reciever: 1
+  reciever_id: 1
+  order_id: 1
+  duration: 1
