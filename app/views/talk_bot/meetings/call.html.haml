@@ -24,8 +24,7 @@
         %div.nav_bar_side
           %h4 Chat
         %div.content
-      
-          %div#number= @client_phone
+          %input.input-lg#number{name: "number", placeholder: "Enter a phone number or client to call", type: "text"}/
           %br
           %input.input-lg#count_down_time{name: "count_down_time", placeholder: "Enter the number of seconds the call should last", type: "hidden"}
           %br

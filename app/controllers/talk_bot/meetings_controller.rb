@@ -3,29 +3,31 @@ module TalkBot
 	class MeetingsController < ApplicationController
 		before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
-
+    $default_client = "client"
 		def call
      # Rails.logger.info "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$#{params[:ph_no]}"
-      
-    default_client = "jenny"
-     @client_name = params[:customer_name]
+    @client_name = params[:client]
+    Rails.logger.info "##########ddfdfdfdf#{@client_name}#########"
+  #  Rails.logger.info "top #{@client_name}"
     if @client_name.nil?
-        @client_name = default_client
+        @client_name = $default_client
     end
-    @client_phone = params[:ph_no]
+   # @client_phone = params[:ph_no]
     # Find these values at twilio.com/user/account
     account_sid = 'AC1e7ff5d3ece16ab5ad2f63f7e201cb00'
     auth_token = 'cb902e68e940a3457383b6c813ab68f1'
     capability = Twilio::Util::Capability.new account_sid, auth_token
     # Create an application sid at twilio.com/user/account/apps and use it here
     capability.allow_client_outgoing "AP8270d0631a20c1edddf407e99299eca6"
+#    capability.allow_client_incoming @client_name
     capability.allow_client_incoming @client_name
+    Rails.logger.info "botom #{@client_name}"
     @token = capability.generate
     end
     
 
 		def voice
-          default_client = "jenny"
+#          default_client = "jenny"
           caller_id = "+13174268213"
           number = params[:PhoneNumber]
           response = Twilio::TwiML::Response.new do |r|
@@ -37,7 +39,7 @@ module TalkBot
                 if /^[\d\+\-\(\) ]+$/.match(number)
                     d.Number(CGI::escapeHTML number)
                 else
-                    d.Client default_client
+                    d.Client number
                 end
             end
         end
